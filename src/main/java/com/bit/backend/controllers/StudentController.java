@@ -25,7 +25,7 @@ public class StudentController {
         this.statusServiceI = statusServiceI;
     }
 
-    @GetMapping("/status")
+    @GetMapping("/student-status")
     public ResponseEntity<ApiListResponse<StatusDto>> getAllStatus() {
         return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllStatus()));
     }

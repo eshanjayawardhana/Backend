@@ -34,7 +34,7 @@ public class TechnicianController {
                 .body(ApiListResponse.ofOne(created));
     }
 
-    @GetMapping("/technician")
+    @GetMapping("/technicians")
     public ResponseEntity<ApiListResponse<TechnicianDto>> getAllTechnicians() {
         return ResponseEntity.ok(ApiListResponse.of(technicianServiceI.getAllTechnicians()));
     }

@@ -27,27 +27,13 @@ public class TechnicianEntity extends AuditableEntity{
     @Column(name = "specialization")
     private String specialization;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private AppUserEntity user;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", unique = true)
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
     private StatusEntity status;
-
-//    @Column(name = "created_date")
-//    private LocalDateTime createdDate;
-
-//    @ManyToOne
-//    @JoinColumn(name = "created_by")
-//    private AppUserEntity createdBy;
-
-//    @Column(name = "updated_date")
-//    private LocalDateTime updatedDate;
-
-//    @ManyToOne
-//    @JoinColumn(name = "updated_by")
-//    private AppUserEntity updatedBy;
 
     public TechnicianEntity() {
     }
@@ -100,11 +86,11 @@ public class TechnicianEntity extends AuditableEntity{
         this.specialization = specialization;
     }
 
-    public AppUserEntity getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(AppUserEntity user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -115,6 +101,4 @@ public class TechnicianEntity extends AuditableEntity{
     public void setStatus(StatusEntity status) {
         this.status = status;
     }
-
-
 }

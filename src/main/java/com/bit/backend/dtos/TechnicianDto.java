@@ -6,20 +6,19 @@ import com.bit.backend.entities.StatusEntity;
 
 public class TechnicianDto {
 
-
     private Long id;
     private String technicianCode;
     private String fullName;
     private String phone;
     private String licenseNo;
     private String specialization;
-    private AppUserEntity user;
-    private StatusEntity status;
+    private UserDto user;
+    private StatusDto status;
 
     public TechnicianDto() {
     }
 
-    public TechnicianDto(Long id, String technicianCode, String fullName, String phone, String licenseNo, String specialization, AppUserEntity user, StatusEntity status) {
+    public TechnicianDto(Long id, String technicianCode, String fullName, String phone, String licenseNo, String specialization, UserDto user, StatusDto status) {
         this.id = id;
         this.technicianCode = technicianCode;
         this.fullName = fullName;
@@ -78,22 +77,19 @@ public class TechnicianDto {
         this.specialization = specialization;
     }
 
-    public AppUserEntity getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(AppUserEntity user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 
-    public StatusEntity getStatus() {
+    public StatusDto getStatus() {
         return status;
     }
 
-    public void setStatus(StatusEntity status) {
+    public void setStatus(StatusDto status) {
         this.status = status;
     }
-
-
-
 }
