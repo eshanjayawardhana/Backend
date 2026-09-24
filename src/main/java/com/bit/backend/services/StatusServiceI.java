@@ -9,4 +9,5 @@ public interface StatusServiceI {
     List<StatusDto> getAllCustomerStatus();
     List<StatusDto> getAllTechnicianStatus();
     List<StatusDto> getAllCustomerSiteStatus();
+    List<StatusDto> getAllPestTypeStatus();
 }

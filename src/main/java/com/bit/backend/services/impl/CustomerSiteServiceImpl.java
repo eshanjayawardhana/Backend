@@ -1,6 +1,5 @@
 package com.bit.backend.services.impl;
 
-import com.bit.backend.dtos.CustomerDto;
 import com.bit.backend.dtos.CustomerSiteDto;
 import com.bit.backend.entities.CustomerEntity;
 import com.bit.backend.entities.CustomerSiteEntity;
