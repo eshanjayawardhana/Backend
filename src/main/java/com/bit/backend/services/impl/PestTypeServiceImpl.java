@@ -8,6 +8,7 @@ import com.bit.backend.repositories.PestTypeRepository;
 import com.bit.backend.services.PestTypeServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class PestTypeServiceImpl implements PestTypeServiceI {
     }
 
     @Override
+    @Transactional
     public PestTypeDto addPestType(PestTypeDto pestTypeDto) {
         PestTypeEntity entity = pestTypeMapper.toPestTypeEntity(pestTypeDto);
         entity.setId(null);
@@ -43,6 +45,7 @@ public class PestTypeServiceImpl implements PestTypeServiceI {
     }
 
     @Override
+    @Transactional
     public PestTypeDto updatePestType(Integer id, PestTypeDto pestTypeDto) {
         PestTypeEntity existing = pestTypeRepository.findById(id)
                 .orElseThrow(() -> new AppException("Pest Type not found", HttpStatus.NOT_FOUND));
@@ -55,6 +58,7 @@ public class PestTypeServiceImpl implements PestTypeServiceI {
     }
 
     @Override
+    @Transactional
     public PestTypeDto deletePestType(Integer id) {
         PestTypeEntity existing = pestTypeRepository.findById(id)
                 .orElseThrow(() -> new AppException("Pest Type not found", HttpStatus.NOT_FOUND));

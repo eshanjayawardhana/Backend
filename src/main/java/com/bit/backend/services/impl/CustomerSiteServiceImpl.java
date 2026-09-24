@@ -65,6 +65,7 @@ public class CustomerSiteServiceImpl implements CustomerSiteServiceI {
     }
 
     @Override
+    @Transactional
     public CustomerSiteDto updateCustomerSite(Integer id, CustomerSiteDto customerSiteDto) {
         CustomerSiteEntity existing = customerSiteRepository.findById(id)
                 .orElseThrow(() -> new AppException("Customer Site not found", HttpStatus.NOT_FOUND));
@@ -86,6 +87,7 @@ public class CustomerSiteServiceImpl implements CustomerSiteServiceI {
     }
 
     @Override
+    @Transactional
     public CustomerSiteDto deleteCustomerSite(Integer id) {
         CustomerSiteEntity existing = customerSiteRepository.findById(id)
                 .orElseThrow(() -> new AppException("Customer site not found", HttpStatus.NOT_FOUND));
