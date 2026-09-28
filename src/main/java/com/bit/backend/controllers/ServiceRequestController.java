@@ -1,7 +1,6 @@
 package com.bit.backend.controllers;
 
 import com.bit.backend.dtos.ApiListResponse;
-import com.bit.backend.dtos.CustomerSiteDto;
 import com.bit.backend.dtos.ServiceRequestDto;
 import com.bit.backend.dtos.StatusDto;
 import com.bit.backend.services.ServiceRequestServiceI;
