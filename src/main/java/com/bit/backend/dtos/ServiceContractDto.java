@@ -20,15 +20,15 @@ public class ServiceContractDto {
     private String visitFrequency;
     private BigDecimal contractAmount;
     private String terms;
-    private CustomerEntity customer;
-    private CustomerSiteEntity customerSite;
-    private ServiceTypeEntity serviceType;
-    private StatusEntity status;
+    private CustomerDto customer;
+    private CustomerSiteDto customerSite;
+    private ServiceTypeDto serviceType;
+    private StatusDto status;
 
     public ServiceContractDto() {
     }
 
-    public ServiceContractDto(Integer id, String contractCode, LocalDate startDate, LocalDate endDate, String visitFrequency, BigDecimal contractAmount, String terms, CustomerEntity customer, CustomerSiteEntity customerSite, ServiceTypeEntity serviceType, StatusEntity status) {
+    public ServiceContractDto(Integer id, String contractCode, LocalDate startDate, LocalDate endDate, String visitFrequency, BigDecimal contractAmount, String terms, CustomerDto customer, CustomerSiteDto customerSite, ServiceTypeDto serviceType, StatusDto status) {
         this.id = id;
         this.contractCode = contractCode;
         this.startDate = startDate;
@@ -98,35 +98,35 @@ public class ServiceContractDto {
         this.terms = terms;
     }
 
-    public CustomerEntity getCustomer() {
+    public CustomerDto getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CustomerEntity customer) {
+    public void setCustomer(CustomerDto customer) {
         this.customer = customer;
     }
 
-    public CustomerSiteEntity getCustomerSite() {
+    public CustomerSiteDto getCustomerSite() {
         return customerSite;
     }
 
-    public void setCustomerSite(CustomerSiteEntity customerSite) {
+    public void setCustomerSite(CustomerSiteDto customerSite) {
         this.customerSite = customerSite;
     }
 
-    public ServiceTypeEntity getServiceType() {
+    public ServiceTypeDto getServiceType() {
         return serviceType;
     }
 
-    public void setServiceType(ServiceTypeEntity serviceType) {
+    public void setServiceType(ServiceTypeDto serviceType) {
         this.serviceType = serviceType;
     }
 
-    public StatusEntity getStatus() {
+    public StatusDto getStatus() {
         return status;
     }
 
-    public void setStatus(StatusEntity status) {
+    public void setStatus(StatusDto status) {
         this.status = status;
     }
 }
