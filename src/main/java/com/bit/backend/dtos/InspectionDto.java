@@ -1,9 +1,4 @@
 package com.bit.backend.dtos;
-
-import com.bit.backend.entities.CustomerSiteEntity;
-import com.bit.backend.entities.ServiceRequestEntity;
-import com.bit.backend.entities.StatusEntity;
-import com.bit.backend.entities.TechnicianEntity;
 import java.time.LocalDateTime;
 
 public class InspectionDto {
