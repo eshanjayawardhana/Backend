@@ -69,10 +69,12 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
         TechnicianEntity existing = technicianRepository.findById(id)
                 .orElseThrow(() -> new AppException("Technician not found", HttpStatus.NOT_FOUND));
 
+        StatusEntity status = resolveStatus(technicianDto);
         existing.setFullName(technicianDto.getFullName());
         existing.setPhone(technicianDto.getPhone());
         existing.setLicenseNo(technicianDto.getLicenseNo());
         existing.setSpecialization(technicianDto.getSpecialization());
+        existing.setStatus(status);
 
         if (technicianDto.getTechnicianCode() != null && !technicianDto.getTechnicianCode().isBlank()) {
             existing.setTechnicianCode(technicianDto.getTechnicianCode());
