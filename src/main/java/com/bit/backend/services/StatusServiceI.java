@@ -17,4 +17,5 @@ public interface StatusServiceI {
     List<StatusDto> getAllTreatmentJobStatus();
     List<StatusDto> getAllServiceContractStatus();
     List<StatusDto> getAllInvoiceStatus();
+    List<StatusDto> getAllPaymentStatus();
 }

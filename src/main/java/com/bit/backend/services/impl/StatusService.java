@@ -24,8 +24,9 @@ public class StatusService implements StatusServiceI {
     private final TreatmentJobMapper treatmentJobMapper;
     private final ServiceContractMapper serviceContractMapper;
     private final InvoiceMapper invoiceMapper;
+    private final PaymentMapper paymentMapper;
 
-    public StatusService(StatusRepository statusRepository, StudentMapper studentMapper, CustomerMapper customerMapper, TechnicianMapper technicianMapper, CustomerSiteMapper customerSiteMapper, PestTypeMapper pestTypeMapper, ServiceTypeMapper serviceTypeMapper, ServiceRequestMapper serviceRequestMapper, ChemicalMapper chemicalMapper, InspectionMapper inspectionMapper, TreatmentJobMapper treatmentJobMapper, ServiceContractMapper serviceContractMapper, InvoiceMapper invoiceMapper) {
+    public StatusService(StatusRepository statusRepository, StudentMapper studentMapper, CustomerMapper customerMapper, TechnicianMapper technicianMapper, CustomerSiteMapper customerSiteMapper, PestTypeMapper pestTypeMapper, ServiceTypeMapper serviceTypeMapper, ServiceRequestMapper serviceRequestMapper, ChemicalMapper chemicalMapper, InspectionMapper inspectionMapper, TreatmentJobMapper treatmentJobMapper, ServiceContractMapper serviceContractMapper, InvoiceMapper invoiceMapper, PaymentMapper paymentMapper) {
         this.statusRepository = statusRepository;
         this.studentMapper = studentMapper;
         this.customerMapper = customerMapper;
@@ -39,6 +40,7 @@ public class StatusService implements StatusServiceI {
         this.treatmentJobMapper = treatmentJobMapper;
         this.serviceContractMapper = serviceContractMapper;
         this.invoiceMapper = invoiceMapper;
+        this.paymentMapper = paymentMapper;
     }
 
     @Override
@@ -102,6 +104,12 @@ public class StatusService implements StatusServiceI {
 
     @Override
     public List<StatusDto> getAllInvoiceStatus() {
-        return invoiceMapper.toStatusDtoList(statusRepository.findAll());    }
+        return invoiceMapper.toStatusDtoList(statusRepository.findAll());
+    }
+
+    @Override
+    public List<StatusDto> getAllPaymentStatus() {
+        return paymentMapper.toStatusDtoList(statusRepository.findAll());
+    }
 
 }
