@@ -15,4 +15,5 @@ public interface StatusServiceI {
     List<StatusDto> getAllChemicalStatus();
     List<StatusDto> getAllInspectionStatus();
     List<StatusDto> getAllTreatmentJobStatus();
+    List<StatusDto> getAllServiceContractStatus();
 }

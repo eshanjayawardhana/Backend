@@ -22,8 +22,9 @@ public class StatusService implements StatusServiceI {
     private final ChemicalMapper chemicalMapper;
     private final InspectionMapper inspectionMapper;
     private final TreatmentJobMapper treatmentJobMapper;
+    private final ServiceContractMapper serviceContractMapper;
 
-    public StatusService(StatusRepository statusRepository, StudentMapper studentMapper, CustomerMapper customerMapper, TechnicianMapper technicianMapper, CustomerSiteMapper customerSiteMapper, PestTypeMapper pestTypeMapper, ServiceTypeMapper serviceTypeMapper, ServiceRequestMapper serviceRequestMapper, ChemicalMapper chemicalMapper, InspectionMapper inspectionMapper, TreatmentJobMapper treatmentJobMapper) {
+    public StatusService(StatusRepository statusRepository, StudentMapper studentMapper, CustomerMapper customerMapper, TechnicianMapper technicianMapper, CustomerSiteMapper customerSiteMapper, PestTypeMapper pestTypeMapper, ServiceTypeMapper serviceTypeMapper, ServiceRequestMapper serviceRequestMapper, ChemicalMapper chemicalMapper, InspectionMapper inspectionMapper, TreatmentJobMapper treatmentJobMapper, ServiceContractMapper serviceContractMapper) {
         this.statusRepository = statusRepository;
         this.studentMapper = studentMapper;
         this.customerMapper = customerMapper;
@@ -35,6 +36,7 @@ public class StatusService implements StatusServiceI {
         this.chemicalMapper = chemicalMapper;
         this.inspectionMapper = inspectionMapper;
         this.treatmentJobMapper = treatmentJobMapper;
+        this.serviceContractMapper = serviceContractMapper;
     }
 
     @Override
@@ -88,7 +90,12 @@ public class StatusService implements StatusServiceI {
 
     @Override
     public List<StatusDto> getAllTreatmentJobStatus() {
-        return null;
+        return treatmentJobMapper.toStatusDtoList(statusRepository.findAll());
+    }
+
+    @Override
+    public List<StatusDto> getAllServiceContractStatus() {
+        return serviceContractMapper.toStatusDtoList(statusRepository.findAll());
     }
 
 }

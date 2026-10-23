@@ -14,18 +14,18 @@ public class TreatmentJobDto {
     private String workDone;
     private BigDecimal hoursSpent;
     private String customerSignature;
-    private ServiceRequestEntity serviceRequest;
-    private InspectionEntity inspection;
-    private ServiceContractEntity serviceContract;
-    private CustomerSiteEntity customerSite;
-    private TechnicianEntity technician;
-    private ServiceTypeEntity serviceType;
-    private StatusEntity status;
+    private ServiceRequestDto serviceRequest;
+    private InspectionDto inspection;
+    private ServiceContractDto serviceContract;
+    private CustomerSiteDto customerSite;
+    private TechnicianDto technician;
+    private ServiceTypeDto serviceType;
+    private StatusDto status;
 
     public TreatmentJobDto() {
     }
 
-    public TreatmentJobDto(Integer id, String jobCode, LocalDateTime scheduledDate, LocalDateTime completedDate, String workDone, BigDecimal hoursSpent, String customerSignature, ServiceRequestEntity serviceRequest, InspectionEntity inspection, ServiceContractEntity serviceContract, CustomerSiteEntity customerSite, TechnicianEntity technician, ServiceTypeEntity serviceType, StatusEntity status) {
+    public TreatmentJobDto(Integer id, String jobCode, LocalDateTime scheduledDate, LocalDateTime completedDate, String workDone, BigDecimal hoursSpent, String customerSignature, ServiceRequestDto serviceRequest, InspectionDto inspection, ServiceContractDto serviceContract, CustomerSiteDto customerSite, TechnicianDto technician, ServiceTypeDto serviceType, StatusDto status) {
         this.id = id;
         this.jobCode = jobCode;
         this.scheduledDate = scheduledDate;
@@ -98,59 +98,59 @@ public class TreatmentJobDto {
         this.customerSignature = customerSignature;
     }
 
-    public ServiceRequestEntity getServiceRequest() {
+    public ServiceRequestDto getServiceRequest() {
         return serviceRequest;
     }
 
-    public void setServiceRequest(ServiceRequestEntity serviceRequest) {
+    public void setServiceRequest(ServiceRequestDto serviceRequest) {
         this.serviceRequest = serviceRequest;
     }
 
-    public InspectionEntity getInspection() {
+    public InspectionDto getInspection() {
         return inspection;
     }
 
-    public void setInspection(InspectionEntity inspection) {
+    public void setInspection(InspectionDto inspection) {
         this.inspection = inspection;
     }
 
-    public ServiceContractEntity getServiceContract() {
+    public ServiceContractDto getServiceContract() {
         return serviceContract;
     }
 
-    public void setServiceContract(ServiceContractEntity serviceContract) {
+    public void setServiceContract(ServiceContractDto serviceContract) {
         this.serviceContract = serviceContract;
     }
 
-    public CustomerSiteEntity getCustomerSite() {
+    public CustomerSiteDto getCustomerSite() {
         return customerSite;
     }
 
-    public void setCustomerSite(CustomerSiteEntity customerSite) {
+    public void setCustomerSite(CustomerSiteDto customerSite) {
         this.customerSite = customerSite;
     }
 
-    public TechnicianEntity getTechnician() {
+    public TechnicianDto getTechnician() {
         return technician;
     }
 
-    public void setTechnician(TechnicianEntity technician) {
+    public void setTechnician(TechnicianDto technician) {
         this.technician = technician;
     }
 
-    public ServiceTypeEntity getServiceType() {
+    public ServiceTypeDto getServiceType() {
         return serviceType;
     }
 
-    public void setServiceType(ServiceTypeEntity serviceType) {
+    public void setServiceType(ServiceTypeDto serviceType) {
         this.serviceType = serviceType;
     }
 
-    public StatusEntity getStatus() {
+    public StatusDto getStatus() {
         return status;
     }
 
-    public void setStatus(StatusEntity status) {
+    public void setStatus(StatusDto status) {
         this.status = status;
     }
 }
