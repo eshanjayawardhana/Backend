@@ -28,7 +28,7 @@ public class TechnicianEntity extends AuditableEntity{
     private String specialization;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", unique = true)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne

@@ -6,17 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "app_user")
 public class User extends AuditableEntity {
 
-    public User() {
-    }
-
-    public User(Long id, String firstName, String lastName, String login, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,6 +21,17 @@ public class User extends AuditableEntity {
 
     @Column(nullable = false)
     private String password;
+
+    public User() {
+    }
+
+    public User(Long id, String firstName, String lastName, String login, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

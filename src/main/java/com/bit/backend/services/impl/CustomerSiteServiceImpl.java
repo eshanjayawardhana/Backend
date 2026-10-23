@@ -79,6 +79,7 @@ public class CustomerSiteServiceImpl implements CustomerSiteServiceI {
         existing.setContactPhone(customerSiteDto.getContactPhone());
         existing.setSiteNotes(customerSiteDto.getSiteNotes());
         existing.setStatus(status);
+        existing.setCustomer(customer);
 
         if (customerSiteDto.getSiteCode() != null && !customerSiteDto.getSiteCode().isBlank()) {
             existing.setSiteCode(customerSiteDto.getSiteCode());

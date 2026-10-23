@@ -26,7 +26,7 @@ public class ChemicalController {
 
     @GetMapping("/chemical-status")
     public ResponseEntity<ApiListResponse<StatusDto>> getAllChemicalStatus() {
-        return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllCustomerSiteStatus()));
+        return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllChemicalStatus()));
     }
 
     @PostMapping("/chemical-add")
