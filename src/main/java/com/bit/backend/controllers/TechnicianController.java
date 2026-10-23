@@ -23,8 +23,8 @@ public class TechnicianController {
     }
 
     @GetMapping("/technician-status")
-    public ResponseEntity<ApiListResponse<StatusDto>> getAllStatus() {
-        return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllStatus()));
+    public ResponseEntity<ApiListResponse<StatusDto>> getAllTechnicianStatus() {
+        return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllTechnicianStatus()));
     }
 
     @PostMapping("/technician")

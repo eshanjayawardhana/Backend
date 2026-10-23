@@ -1,11 +1,13 @@
 package com.bit.backend.services.impl;
 
+import com.bit.backend.dtos.CustomerSiteDto;
 import com.bit.backend.dtos.TechnicianDto;
-import com.bit.backend.entities.TechnicianEntity;
+import com.bit.backend.entities.*;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.TechnicianMapper;
 import com.bit.backend.repositories.StatusRepository;
 import com.bit.backend.repositories.TechnicianRepository;
+import com.bit.backend.repositories.UserRepository;
 import com.bit.backend.services.TechnicianServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,11 +21,13 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
     private final TechnicianMapper technicianMapper;
     private final TechnicianRepository technicianRepository;
     private final StatusRepository statusRepository;
+    private final UserRepository userRepository;
 
-    public TechnicianServiceImpl(TechnicianMapper technicianMapper, TechnicianRepository technicianRepository, StatusRepository statusRepository) {
+    public TechnicianServiceImpl(TechnicianMapper technicianMapper, TechnicianRepository technicianRepository, StatusRepository statusRepository, UserRepository userRepository) {
         this.technicianMapper = technicianMapper;
         this.technicianRepository = technicianRepository;
         this.statusRepository = statusRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -44,6 +48,12 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
         TechnicianEntity entity = technicianMapper.toTechnicianEntity(technicianDto);
         // Set ID to null so the database generates a new ID for the new technician
         entity.setId(null);
+
+        User user = resolveUser(technicianDto);
+        entity.setUser(user);
+
+        StatusEntity status = resolveStatus(technicianDto);
+        entity.setStatus(status);
 
         TechnicianEntity saved = technicianRepository.save(entity);
         if(saved.getTechnicianCode() == null || saved.getTechnicianCode().isBlank()){
@@ -81,5 +91,20 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
         return dto;
     }
 
+    private StatusEntity resolveStatus(TechnicianDto technicianDto) {
+        if (technicianDto.getStatus() == null || technicianDto.getStatus().getId() == null) {
+            throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
+        }
+        return statusRepository.findById(technicianDto.getStatus().getId())
+                .orElseThrow(() -> new AppException("Status not found", HttpStatus.BAD_REQUEST));
+    }
 
+    private User resolveUser(TechnicianDto technicianDto) {
+        if (technicianDto.getUser() == null || technicianDto.getUser().getId() == null) {
+            throw new AppException("User is required", HttpStatus.BAD_REQUEST);
+        }
+
+        return userRepository.findById(technicianDto.getUser().getId())
+                .orElseThrow(() -> new AppException("User not found", HttpStatus.BAD_REQUEST));
+    }
 }

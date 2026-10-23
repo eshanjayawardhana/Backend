@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface StatusServiceI {
     List<StatusDto> getAllStatus();
+    List<StatusDto> getAllCustomerStatus();
+    List<StatusDto> getAllTechnicianStatus();
+    List<StatusDto> getAllCustomerSiteStatus();
+    List<StatusDto> getAllPestTypeStatus();
 }

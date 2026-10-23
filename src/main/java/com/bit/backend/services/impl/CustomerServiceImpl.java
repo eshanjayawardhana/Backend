@@ -1,11 +1,8 @@
 package com.bit.backend.services.impl;
 
 import com.bit.backend.dtos.CustomerDto;
-import com.bit.backend.dtos.StudentDto;
-import com.bit.backend.dtos.TechnicianDto;
 import com.bit.backend.entities.CustomerEntity;
 import com.bit.backend.entities.StatusEntity;
-import com.bit.backend.entities.TechnicianEntity;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.CustomerMapper;
 import com.bit.backend.repositories.CustomerRepository;
@@ -67,12 +64,12 @@ public class CustomerServiceImpl implements CustomerServiceI {
                 .orElseThrow(() -> new AppException("Customer not found", HttpStatus.NOT_FOUND));
 
         StatusEntity status = resolveStatus(customerDto);
-        existing.setCustomer_name(customerDto.getCustomer_name());
-        existing.setCustomer_type(customerDto.getCustomer_type());
+        existing.setCustomerName(customerDto.getCustomerName());
+        existing.setCustomerType(customerDto.getCustomerType());
         existing.setEmail(customerDto.getEmail());
         existing.setPhone(customerDto.getPhone());
         existing.setNic(customerDto.getNic());
-        existing.setBilling_address(customerDto.getBilling_address());
+        existing.setBillingAddress(customerDto.getBillingAddress());
         existing.setStatus(status);
 
         if (customerDto.getCustomerCode() != null && !customerDto.getCustomerCode().isBlank()) {

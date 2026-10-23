@@ -5,26 +5,26 @@ public class CustomerDto {
 
     private Integer id;
     private String customerCode;
-    private String customer_name;
-    private String customer_type;
+    private String customerName;
+    private String customerType;
     private String email;
     private String phone;
     private String nic;
-    private String billing_address;
+    private String billingAddress;
     private StatusDto status;
 
     public CustomerDto() {
     }
 
-    public CustomerDto(Integer id, String customerCode, String customer_name, String customer_type, String email, String phone, String nic, String billing_address, StatusDto status) {
+    public CustomerDto(Integer id, String customerCode, String customerName, String customerType, String email, String phone, String nic, String billingAddress, StatusDto status) {
         this.id = id;
         this.customerCode = customerCode;
-        this.customer_name = customer_name;
-        this.customer_type = customer_type;
+        this.customerName = customerName;
+        this.customerType = customerType;
         this.email = email;
         this.phone = phone;
         this.nic = nic;
-        this.billing_address = billing_address;
+        this.billingAddress = billingAddress;
         this.status = status;
     }
 
@@ -44,20 +44,20 @@ public class CustomerDto {
         this.customerCode = customerCode;
     }
 
-    public String getCustomer_name() {
-        return customer_name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomer_name(String customer_name) {
-        this.customer_name = customer_name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getCustomer_type() {
-        return customer_type;
+    public String getCustomerType() {
+        return customerType;
     }
 
-    public void setCustomer_type(String customer_type) {
-        this.customer_type = customer_type;
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
     }
 
     public String getEmail() {
@@ -84,12 +84,12 @@ public class CustomerDto {
         this.nic = nic;
     }
 
-    public String getBilling_address() {
-        return billing_address;
+    public String getBillingAddress() {
+        return billingAddress;
     }
 
-    public void setBilling_address(String billing_address) {
-        this.billing_address = billing_address;
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public StatusDto getStatus() {

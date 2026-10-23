@@ -23,11 +23,11 @@ public class CustomerController {
     }
 
     @GetMapping("/customer-status")
-    public ResponseEntity<ApiListResponse<StatusDto>> getAllStatus() {
-        return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllStatus()));
+    public ResponseEntity<ApiListResponse<StatusDto>> getAllCustomerStatus() {
+        return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllCustomerStatus()));
     }
 
-    @PostMapping("customer-add")
+    @PostMapping("/customer-add")
     public ResponseEntity<ApiListResponse<CustomerDto>> addCustomer(@RequestBody CustomerDto customerDto){
         CustomerDto saved = customerServiceI.addCustomer(customerDto);
         return ResponseEntity.created(URI.create("/api/v1/customer-add/" + saved.getId()))
