@@ -30,7 +30,7 @@ public class InspectionEntity extends AuditableEntity{
     @Column(name = "recommendation")
     private String recommendation;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "request_id")
     private ServiceRequestEntity serviceRequest;
 
