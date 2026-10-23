@@ -11,6 +11,7 @@ import com.bit.backend.repositories.StatusRepository;
 import com.bit.backend.services.ServiceTypeI;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class ServiceTypeImpl implements ServiceTypeI {
     }
 
     @Override
+    @Transactional
     public ServiceTypeDto addServiceType(ServiceTypeDto serviceTypeDto) {
         ServiceTypeEntity entity = serviceTypeMapper.toServiceTypeEntity(serviceTypeDto);
         entity.setId(null);
@@ -63,6 +65,7 @@ public class ServiceTypeImpl implements ServiceTypeI {
     }
 
     @Override
+    @Transactional
     public ServiceTypeDto updateServiceType(Integer id, ServiceTypeDto serviceTypeDto) {
         ServiceTypeEntity existing = serviceTypeRepository.findById(id)
                 .orElseThrow(() -> new AppException("Service Type not found", HttpStatus.NOT_FOUND));
@@ -84,6 +87,7 @@ public class ServiceTypeImpl implements ServiceTypeI {
     }
 
     @Override
+    @Transactional
     public ServiceTypeDto deleteServiceType(Integer id) {
         ServiceTypeEntity existing = serviceTypeRepository.findById(id)
                 .orElseThrow(() -> new AppException("Service Type not found", HttpStatus.NOT_FOUND));
