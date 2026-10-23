@@ -20,8 +20,9 @@ public class StatusService implements StatusServiceI {
     private final ServiceTypeMapper serviceTypeMapper;
     private final ServiceRequestMapper serviceRequestMapper;
     private final ChemicalMapper chemicalMapper;
+    private final InspectionMapper inspectionMapper;
 
-    public StatusService(StatusRepository statusRepository, StudentMapper studentMapper, CustomerMapper customerMapper, TechnicianMapper technicianMapper, CustomerSiteMapper customerSiteMapper, PestTypeMapper pestTypeMapper, ServiceTypeMapper serviceTypeMapper, ServiceRequestMapper serviceRequestMapper, ChemicalMapper chemicalMapper) {
+    public StatusService(StatusRepository statusRepository, StudentMapper studentMapper, CustomerMapper customerMapper, TechnicianMapper technicianMapper, CustomerSiteMapper customerSiteMapper, PestTypeMapper pestTypeMapper, ServiceTypeMapper serviceTypeMapper, ServiceRequestMapper serviceRequestMapper, ChemicalMapper chemicalMapper, InspectionMapper inspectionMapper) {
         this.statusRepository = statusRepository;
         this.studentMapper = studentMapper;
         this.customerMapper = customerMapper;
@@ -31,6 +32,7 @@ public class StatusService implements StatusServiceI {
         this.serviceTypeMapper = serviceTypeMapper;
         this.serviceRequestMapper = serviceRequestMapper;
         this.chemicalMapper = chemicalMapper;
+        this.inspectionMapper = inspectionMapper;
     }
 
     @Override
@@ -75,6 +77,11 @@ public class StatusService implements StatusServiceI {
     @Override
     public List<StatusDto> getAllChemicalStatus() {
         return chemicalMapper.toStatusDtoList(statusRepository.findAll());
+    }
+
+    @Override
+    public List<StatusDto> getAllInspectionStatus() {
+        return inspectionMapper.toStatusDtoList(statusRepository.findAll());
     }
 
 }
