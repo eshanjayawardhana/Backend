@@ -22,7 +22,7 @@ public class TechnicianController {
         this.statusServiceI = statusServiceI;
     }
 
-    @GetMapping("/status")
+    @GetMapping("/technician-status")
     public ResponseEntity<ApiListResponse<StatusDto>> getAllStatus() {
         return ResponseEntity.ok(ApiListResponse.of(statusServiceI.getAllStatus()));
     }

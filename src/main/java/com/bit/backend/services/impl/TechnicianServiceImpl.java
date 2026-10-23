@@ -42,17 +42,19 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
     @Transactional
     public TechnicianDto addTechnician(TechnicianDto technicianDto) {
         TechnicianEntity entity = technicianMapper.toTechnicianEntity(technicianDto);
+        // Set ID to null so the database generates a new ID for the new technician
         entity.setId(null);
 
         TechnicianEntity saved = technicianRepository.save(entity);
         if(saved.getTechnicianCode() == null || saved.getTechnicianCode().isBlank()){
-            saved.setTechnicianCode("TECH-" + saved.getId());
+            saved.setTechnicianCode("TEC-" + saved.getId());
             saved = technicianRepository.save(saved);
         }
         return technicianMapper.toTechnicianDto(saved);
     }
 
     @Override
+    @Transactional
     public TechnicianDto updateTechnician(Integer id, TechnicianDto technicianDto) {
         TechnicianEntity existing = technicianRepository.findById(id)
                 .orElseThrow(() -> new AppException("Technician not found", HttpStatus.NOT_FOUND));
@@ -70,6 +72,7 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
     }
 
     @Override
+    @Transactional
     public TechnicianDto deleteTechnician(Integer id) {
         TechnicianEntity existing = technicianRepository.findById(id)
                 .orElseThrow(() -> new AppException("Technician not found", HttpStatus.NOT_FOUND));
