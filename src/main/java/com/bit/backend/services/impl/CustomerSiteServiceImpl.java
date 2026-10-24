@@ -71,7 +71,7 @@ public class CustomerSiteServiceImpl implements CustomerSiteServiceI {
                 .orElseThrow(() -> new AppException("Customer Site not found", HttpStatus.NOT_FOUND));
 
         StatusEntity status = resolveStatus(customerSiteDto);
-
+        CustomerEntity customer = resolveCustomer(customerSiteDto);
         existing.setSiteName(customerSiteDto.getSiteName());
         existing.setAddress(customerSiteDto.getAddress());
         existing.setCity(customerSiteDto.getCity());
