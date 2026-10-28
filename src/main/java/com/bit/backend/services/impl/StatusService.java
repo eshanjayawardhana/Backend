@@ -43,6 +43,7 @@ public class StatusService implements StatusServiceI {
         this.paymentMapper = paymentMapper;
     }
 
+
     @Override
     public List<StatusDto> getAllStatus() {
         return studentMapper.toStatusDtoList(statusRepository.findAll());
@@ -50,66 +51,87 @@ public class StatusService implements StatusServiceI {
 
     @Override
     public List<StatusDto> getAllTechnicianStatus() {
-        return technicianMapper.toStatusDtoList((statusRepository.findAll()));
+        return technicianMapper.toStatusDtoList(
+                statusRepository.findByModuleType("TECHNICIAN")
+        );
     }
 
     @Override
     public List<StatusDto> getAllCustomerStatus() {
-        return customerMapper.toStatusDtoList(statusRepository.findAll());
-
+        return customerMapper.toStatusDtoList(
+                statusRepository.findByModuleType("GENERAL")
+        );
     }
 
     @Override
     public List<StatusDto> getAllCustomerSiteStatus() {
-        return customerSiteMapper.toStatusDtoList(statusRepository.findAll());
-
+        return customerSiteMapper.toStatusDtoList(
+                statusRepository.findByModuleType("GENERAL")
+        );
     }
 
     @Override
     public List<StatusDto> getAllPestTypeStatus() {
-        return pestTypeMapper.toStatusDtoList(statusRepository.findAll());
-
+        return pestTypeMapper.toStatusDtoList(
+                statusRepository.findByModuleType("GENERAL")
+        );
     }
 
     @Override
     public List<StatusDto> getAllServiceTypeStatus() {
-        return serviceTypeMapper.toStatusDtoList(statusRepository.findAll());
+        return serviceTypeMapper.toStatusDtoList(
+                statusRepository.findByModuleType("GENERAL")
+        );
     }
 
     @Override
     public List<StatusDto> getAllServiceRequestStatus() {
-        return serviceRequestMapper.toStatusDtoList(statusRepository.findAll());
-
+        return serviceRequestMapper.toStatusDtoList(
+                statusRepository.findByModuleType("SERVICE_REQUEST")
+        );
     }
 
     @Override
     public List<StatusDto> getAllChemicalStatus() {
-        return chemicalMapper.toStatusDtoList(statusRepository.findAll());
+        return chemicalMapper.toStatusDtoList(
+                statusRepository.findByModuleType("GENERAL")
+        );
     }
 
     @Override
     public List<StatusDto> getAllInspectionStatus() {
-        return inspectionMapper.toStatusDtoList(statusRepository.findAll());
+        return inspectionMapper.toStatusDtoList(
+                statusRepository.findByModuleType("INSPECTION")
+        );
     }
 
     @Override
     public List<StatusDto> getAllTreatmentJobStatus() {
-        return treatmentJobMapper.toStatusDtoList(statusRepository.findAll());
+        return treatmentJobMapper.toStatusDtoList(
+                statusRepository.findByModuleType("TREATMENT_JOB")
+        );
     }
 
     @Override
     public List<StatusDto> getAllServiceContractStatus() {
-        return serviceContractMapper.toStatusDtoList(statusRepository.findAll());
+        return serviceContractMapper.toStatusDtoList(
+                statusRepository.findByModuleType("SERVICE_CONTRACT")
+        );
     }
 
     @Override
     public List<StatusDto> getAllInvoiceStatus() {
-        return invoiceMapper.toStatusDtoList(statusRepository.findAll());
+        return invoiceMapper.toStatusDtoList(
+                statusRepository.findByModuleType("INVOICE")
+        );
     }
 
     @Override
     public List<StatusDto> getAllPaymentStatus() {
-        return paymentMapper.toStatusDtoList(statusRepository.findAll());
+        return paymentMapper.toStatusDtoList(
+                statusRepository.findByModuleType("PAYMENT")
+        );
     }
+
 
 }
