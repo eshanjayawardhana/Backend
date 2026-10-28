@@ -1,3 +1,4 @@
+
 package com.bit.backend.entities;
 
 import jakarta.persistence.*;
@@ -10,8 +11,11 @@ public class StatusEntity extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "module_type", length = 100)
+    private String moduleType;
 
     public StatusEntity() {
     }
@@ -35,5 +39,13 @@ public class StatusEntity extends AuditableEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getModuleType() {
+        return moduleType;
+    }
+
+    public void setModuleType(String moduleType) {
+        this.moduleType = moduleType;
     }
 }
