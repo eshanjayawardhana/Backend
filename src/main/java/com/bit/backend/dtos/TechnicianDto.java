@@ -1,8 +1,5 @@
 package com.bit.backend.dtos;
 
-import com.bit.backend.entities.AppUserEntity;
-import com.bit.backend.entities.StatusEntity;
-
 
 public class TechnicianDto {
 
