@@ -142,16 +142,24 @@ public class PaymentServiceImpl implements PaymentServiceI {
     private StatusEntity resolveStatus(PaymentDto dto) {
 
         if (dto.getStatus() == null || dto.getStatus().getId() == null) {
+            throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
+        }
+
+        StatusEntity status = statusRepository
+                .findById(dto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"PAYMENT".equals(status.getModuleType())) {
             throw new AppException(
-                    "Payment status ID is required",
+                    "Invalid status for Payment module",
                     HttpStatus.BAD_REQUEST
             );
         }
 
-        return statusRepository.findById(dto.getStatus().getId())
-                .orElseThrow(() -> new AppException(
-                        "Payment status not found",
-                        HttpStatus.NOT_FOUND
-                ));
+        return status;
     }
 }

@@ -116,11 +116,27 @@ public class ServiceRequestServiceImpl implements ServiceRequestServiceI {
     ///////////////////////////////////////////////
 
     private StatusEntity resolveStatus(ServiceRequestDto serviceRequestDto) {
+
         if (serviceRequestDto.getStatus() == null || serviceRequestDto.getStatus().getId() == null) {
             throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(serviceRequestDto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.BAD_REQUEST));
+
+        StatusEntity status = statusRepository
+                .findById(serviceRequestDto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"SERVICE_REQUEST".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Service Request module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 
     private CustomerEntity resolveCustomer(ServiceRequestDto serviceRequestDto) {

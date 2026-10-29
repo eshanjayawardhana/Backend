@@ -1,9 +1,7 @@
 package com.bit.backend.services.impl;
 
 import com.bit.backend.dtos.ChemicalDto;
-import com.bit.backend.dtos.CustomerDto;
 import com.bit.backend.entities.ChemicalEntity;
-import com.bit.backend.entities.CustomerEntity;
 import com.bit.backend.entities.StatusEntity;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.ChemicalMapper;
@@ -93,10 +91,26 @@ public class ChemicalServiceImpl implements ChemicalServiceI {
     }
 
     private StatusEntity resolveStatus(ChemicalDto chemicalDto) {
+
         if (chemicalDto.getStatus() == null || chemicalDto.getStatus().getId() == null) {
             throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(chemicalDto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.BAD_REQUEST));
+
+        StatusEntity status = statusRepository
+                .findById(chemicalDto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"GENERAL".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Chemical module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 }

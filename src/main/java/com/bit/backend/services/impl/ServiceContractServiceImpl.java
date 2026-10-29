@@ -144,10 +144,26 @@ public class ServiceContractServiceImpl implements ServiceContractServiceI {
     }
 
     private StatusEntity resolveStatus(ServiceContractDto dto) {
+
         if (dto.getStatus() == null || dto.getStatus().getId() == null) {
             throw new AppException("Status ID is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(dto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.NOT_FOUND));
+
+        StatusEntity status = statusRepository
+                .findById(dto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"SERVICE_CONTRACT".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Service Contract module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 }

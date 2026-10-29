@@ -99,12 +99,30 @@ public class CustomerSiteServiceImpl implements CustomerSiteServiceI {
     }
 
     private StatusEntity resolveStatus(CustomerSiteDto customerSiteDto) {
+
         if (customerSiteDto.getStatus() == null || customerSiteDto.getStatus().getId() == null) {
             throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(customerSiteDto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.BAD_REQUEST));
+
+        StatusEntity status = statusRepository
+                .findById(customerSiteDto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"GENERAL".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Customer Site module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
+
+
 
     private CustomerEntity resolveCustomer(CustomerSiteDto customerSiteDto) {
         if (customerSiteDto.getCustomer() == null || customerSiteDto.getCustomer().getId() == null) {

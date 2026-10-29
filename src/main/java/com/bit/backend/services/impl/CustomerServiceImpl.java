@@ -89,12 +89,27 @@ public class CustomerServiceImpl implements CustomerServiceI {
         return dto;
     }
 
-
     private StatusEntity resolveStatus(CustomerDto customerDto) {
+
         if (customerDto.getStatus() == null || customerDto.getStatus().getId() == null) {
             throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(customerDto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.BAD_REQUEST));
+
+        StatusEntity status = statusRepository
+                .findById(customerDto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"GENERAL".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Customer module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 }
