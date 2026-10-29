@@ -1,6 +1,5 @@
 package com.bit.backend.services.impl;
 
-import com.bit.backend.dtos.CustomerSiteDto;
 import com.bit.backend.dtos.ServiceTypeDto;
 import com.bit.backend.entities.*;
 import com.bit.backend.exceptions.AppException;
@@ -97,11 +96,27 @@ public class ServiceTypeImpl implements ServiceTypeI {
     }
 
     private StatusEntity resolveStatus(ServiceTypeDto serviceTypeDto) {
+
         if (serviceTypeDto.getStatus() == null || serviceTypeDto.getStatus().getId() == null) {
             throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(serviceTypeDto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Service Type not found", HttpStatus.BAD_REQUEST));
+
+        StatusEntity status = statusRepository
+                .findById(serviceTypeDto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"GENERAL".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Service Type module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 
     private PestTypeEntity resolvePestType(ServiceTypeDto serviceTypeDto) {

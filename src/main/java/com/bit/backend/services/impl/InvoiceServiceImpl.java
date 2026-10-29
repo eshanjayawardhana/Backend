@@ -151,9 +151,24 @@ public class InvoiceServiceImpl implements InvoiceServiceI {
     private StatusEntity resolveStatus(InvoiceDto dto) {
 
         if (dto.getStatus() == null || dto.getStatus().getId() == null) {
-            throw new AppException("Invoice status ID is required", HttpStatus.BAD_REQUEST);
+            throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(dto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Invoice status not found", HttpStatus.NOT_FOUND));
+
+        StatusEntity status = statusRepository
+                .findById(dto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"INVOICE".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Invoice module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 }

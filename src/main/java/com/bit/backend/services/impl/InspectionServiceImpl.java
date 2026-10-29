@@ -1,8 +1,6 @@
 package com.bit.backend.services.impl;
 
-import com.bit.backend.dtos.CustomerDto;
 import com.bit.backend.dtos.InspectionDto;
-import com.bit.backend.dtos.ServiceRequestDto;
 import com.bit.backend.entities.*;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.InspectionMapper;
@@ -111,11 +109,27 @@ public class InspectionServiceImpl implements InspectionServiceI {
     //////////////////////////////////////////////////////////
 
     private StatusEntity resolveStatus(InspectionDto inspectionDto) {
+
         if (inspectionDto.getStatus() == null || inspectionDto.getStatus().getId() == null) {
             throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(inspectionDto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.BAD_REQUEST));
+
+        StatusEntity status = statusRepository
+                .findById(inspectionDto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"INSPECTION".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Inspection module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 
     private ServiceRequestEntity resolveServiceRequest(InspectionDto inspectionDto) {

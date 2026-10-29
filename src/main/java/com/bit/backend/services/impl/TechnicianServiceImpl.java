@@ -1,6 +1,5 @@
 package com.bit.backend.services.impl;
 
-import com.bit.backend.dtos.CustomerSiteDto;
 import com.bit.backend.dtos.TechnicianDto;
 import com.bit.backend.entities.*;
 import com.bit.backend.exceptions.AppException;
@@ -93,13 +92,35 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
         return dto;
     }
 
+
     private StatusEntity resolveStatus(TechnicianDto technicianDto) {
-        if (technicianDto.getStatus() == null || technicianDto.getStatus().getId() == null) {
-            throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
+
+        if (technicianDto.getStatus() == null
+                || technicianDto.getStatus().getId() == null) {
+            throw new AppException(
+                    "Status is required",
+                    HttpStatus.BAD_REQUEST
+            );
         }
-        return statusRepository.findById(technicianDto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.BAD_REQUEST));
+
+        StatusEntity status = statusRepository
+                .findById(technicianDto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate that the status belongs to the Technician module
+        if (!"TECHNICIAN".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Technician module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
+
 
     private User resolveUser(TechnicianDto technicianDto) {
         if (technicianDto.getUser() == null || technicianDto.getUser().getId() == null) {

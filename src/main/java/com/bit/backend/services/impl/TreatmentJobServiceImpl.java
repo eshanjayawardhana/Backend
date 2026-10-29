@@ -1,6 +1,5 @@
 package com.bit.backend.services.impl;
 
-import com.bit.backend.dtos.ServiceRequestDto;
 import com.bit.backend.dtos.TreatmentJobDto;
 import com.bit.backend.entities.*;
 import com.bit.backend.exceptions.AppException;
@@ -186,11 +185,27 @@ public class TreatmentJobServiceImpl implements TreatmentJobServiceI {
     }
 
     private StatusEntity resolveStatus(TreatmentJobDto dto) {
+
         if (dto.getStatus() == null || dto.getStatus().getId() == null) {
             throw new AppException("Status is required", HttpStatus.BAD_REQUEST);
         }
-        return statusRepository.findById(dto.getStatus().getId())
-                .orElseThrow(() -> new AppException("Status not found", HttpStatus.NOT_FOUND));
+
+        StatusEntity status = statusRepository
+                .findById(dto.getStatus().getId())
+                .orElseThrow(() -> new AppException(
+                        "Status not found",
+                        HttpStatus.BAD_REQUEST
+                ));
+
+        // Validate the status type
+        if (!"TREATMENT_JOB".equals(status.getModuleType())) {
+            throw new AppException(
+                    "Invalid status for Treatment Job module",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        return status;
     }
 
 }
