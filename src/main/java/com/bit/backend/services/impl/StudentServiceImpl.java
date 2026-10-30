@@ -8,6 +8,10 @@ import com.bit.backend.mappers.StudentMapper;
 import com.bit.backend.repositories.StatusRepository;
 import com.bit.backend.repositories.StudentRepository;
 import com.bit.backend.services.StudentServiceI;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +52,14 @@ public class StudentServiceImpl implements StudentServiceI {
     @Override
     public List<StudentDto> getAllStudents() {
         return studentMapper.toStudentDtoList(studentRepository.findAll());
+    }
+
+    @Override
+    public Page<StudentDto> getStudentsPage(int page, int size) {
+        int safePage = Math.max(page, 0);
+        int safeSize = size < 1 ? 5 : Math.min(size, 50);
+        Pageable pageable = PageRequest.of(safePage, safeSize, Sort.by(Sort.Direction.DESC, "id"));
+        return studentRepository.findAll(pageable).map(studentMapper::toStudentDto);
     }
 
     @Override

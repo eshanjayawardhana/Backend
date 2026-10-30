@@ -5,6 +5,7 @@ import com.bit.backend.dtos.StatusDto;
 import com.bit.backend.dtos.StudentDto;
 import com.bit.backend.services.StatusServiceI;
 import com.bit.backend.services.StudentServiceI;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,21 @@ public class StudentController {
     }
 
     @GetMapping("/student")
-    public ResponseEntity<ApiListResponse<StudentDto>> getAllStudents() {
-        return ResponseEntity.ok(ApiListResponse.of(studentServiceI.getAllStudents()));
+    public ResponseEntity<ApiListResponse<StudentDto>> getAllStudents(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size) {
+        if (page == null && size == null) {
+            return ResponseEntity.ok(ApiListResponse.of(studentServiceI.getAllStudents()));
+        }
+        int pageNo = page == null ? 0 : page;
+        int pageSize = size == null ? 5 : size;
+        Page<StudentDto> result = studentServiceI.getStudentsPage(pageNo, pageSize);
+        return ResponseEntity.ok(ApiListResponse.ofPage(
+                result.getContent(),
+                result.getNumber(),
+                result.getSize(),
+                result.getTotalElements(),
+                result.getTotalPages()));
     }
 
     @GetMapping("/student/{id}")
