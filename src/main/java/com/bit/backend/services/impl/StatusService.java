@@ -46,7 +46,7 @@ public class StatusService implements StatusServiceI {
 
     @Override
     public List<StatusDto> getAllStatus() {
-        return studentMapper.toStatusDtoList(statusRepository.findAll());
+        return studentMapper.toStatusDtoList(statusRepository.findByModuleType("GENERAL"));
     }
 
     @Override
