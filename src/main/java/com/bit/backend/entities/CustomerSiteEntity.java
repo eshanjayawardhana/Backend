@@ -10,7 +10,7 @@ public class CustomerSiteEntity extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "site_code")
+    @Column(name = "site_code", unique = true)
     private String siteCode;
 
     @Column(name = "site_name")

@@ -12,7 +12,7 @@ public class InspectionEntity extends AuditableEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "inspection_code")
+    @Column(name = "inspection_code", unique = true)
     private String inspectionCode;
 
     @Column(name = "inspection_date", nullable = false)
