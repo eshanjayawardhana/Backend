@@ -13,7 +13,7 @@ public class ServiceContractEntity extends AuditableEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "contract_code", length = 50)
+    @Column(name = "contract_code", length = 50, unique = true)
     private String contractCode;
 
     @Column(name = "start_date", nullable = false)
