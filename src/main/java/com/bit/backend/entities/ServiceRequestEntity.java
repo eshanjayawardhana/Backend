@@ -13,7 +13,7 @@ public class ServiceRequestEntity extends AuditableEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "request_code")
+    @Column(name = "request_code", unique = true)
     private String requestCode;
 
     @Column(name = "request_date", nullable = false)

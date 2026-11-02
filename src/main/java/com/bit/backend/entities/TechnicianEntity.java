@@ -12,7 +12,7 @@ public class TechnicianEntity extends AuditableEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "technician_code")
+    @Column(name = "technician_code", unique = true)
     private String technicianCode;
 
     @Column(name = "full_name", nullable = false)

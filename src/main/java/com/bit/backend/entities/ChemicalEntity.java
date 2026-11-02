@@ -13,7 +13,7 @@ public class ChemicalEntity extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "chemical_code")
+    @Column(name = "chemical_code", unique = true)
     private String chemicalCode;
 
     @Column(name = "chemical_name", nullable = false)
