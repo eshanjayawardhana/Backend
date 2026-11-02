@@ -88,9 +88,9 @@ public class CustomerServiceImpl implements CustomerServiceI {
         existing.setBillingAddress(customerDto.getBillingAddress());
         existing.setStatus(status);
 
-        if (customerDto.getCustomerCode() != null && !customerDto.getCustomerCode().isBlank()) {
-            existing.setCustomerCode(customerDto.getCustomerCode());
-        }
+//        if (customerDto.getCustomerCode() != null && !customerDto.getCustomerCode().isBlank()) {
+//            existing.setCustomerCode(customerDto.getCustomerCode());
+//        }
 
         return customerMapper.toCustomerDto(customerRepository.save(existing));
     }

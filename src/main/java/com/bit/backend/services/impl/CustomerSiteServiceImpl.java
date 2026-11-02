@@ -98,9 +98,9 @@ public class CustomerSiteServiceImpl implements CustomerSiteServiceI {
         existing.setStatus(status);
         existing.setCustomer(customer);
 
-        if (customerSiteDto.getSiteCode() != null && !customerSiteDto.getSiteCode().isBlank()) {
-            existing.setSiteCode(customerSiteDto.getSiteCode());
-        }
+//        if (customerSiteDto.getSiteCode() != null && !customerSiteDto.getSiteCode().isBlank()) {
+//            existing.setSiteCode(customerSiteDto.getSiteCode());
+//        }
 
         return customerSiteMapper.toCustomerSiteDto(customerSiteRepository.save(existing));
     }

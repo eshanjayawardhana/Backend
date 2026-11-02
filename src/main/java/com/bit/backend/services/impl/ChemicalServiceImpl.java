@@ -89,9 +89,9 @@ public class ChemicalServiceImpl implements ChemicalServiceI {
         existing.setSafetyNotes(chemicalDto.getSafetyNotes());
         existing.setStatus(status);
 
-        if (chemicalDto.getChemicalCode() != null && !chemicalDto.getChemicalCode().isBlank()) {
-            existing.setChemicalCode(chemicalDto.getChemicalCode());
-        }
+//        if (chemicalDto.getChemicalCode() != null && !chemicalDto.getChemicalCode().isBlank()) {
+//            existing.setChemicalCode(chemicalDto.getChemicalCode());
+//        }
 
         return chemicalMapper.toChemicalDto(chemicalRepository.save(existing));
     }

@@ -63,6 +63,7 @@ public class InspectionServiceImpl implements InspectionServiceI {
         LocalDate creationDate = LocalDate.now(ZoneId.of("Asia/Colombo"));
 
         InspectionEntity saved = inspectionRepository.save(entity);
+
         // Generate unique inspection code
         String inspectionCode = generateInspectionCode(
                 saved.getId(),
@@ -109,9 +110,9 @@ public class InspectionServiceImpl implements InspectionServiceI {
         existing.setCustomerSite(customerSite);
         existing.setTechnician(technician);
 
-        if (inspectionDto.getInspectionCode() != null && !inspectionDto.getInspectionCode().isBlank()) {
-            existing.setInspectionCode(inspectionDto.getInspectionCode());
-        }
+//        if (inspectionDto.getInspectionCode() != null && !inspectionDto.getInspectionCode().isBlank()) {
+//            existing.setInspectionCode(inspectionDto.getInspectionCode());
+//        }
 
         return inspectionMapper.toInspectionDto(inspectionRepository.save(existing));
     }
@@ -173,6 +174,7 @@ public class InspectionServiceImpl implements InspectionServiceI {
                 .orElseThrow(() -> new AppException("Technician not found", HttpStatus.BAD_REQUEST));
     }
 
+    ////////////////////////// Generate Auto Increment Code ////////////////////
     private String generateInspectionCode(
             Integer id,
             LocalDate creationDate) {

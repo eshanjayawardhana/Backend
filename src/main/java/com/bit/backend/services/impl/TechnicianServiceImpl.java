@@ -91,9 +91,9 @@ public class TechnicianServiceImpl implements TechnicianServiceI {
         existing.setSpecialization(technicianDto.getSpecialization());
         existing.setStatus(status);
 
-        if (technicianDto.getTechnicianCode() != null && !technicianDto.getTechnicianCode().isBlank()) {
-            existing.setTechnicianCode(technicianDto.getTechnicianCode());
-        }
+//        if (technicianDto.getTechnicianCode() != null && !technicianDto.getTechnicianCode().isBlank()) {
+//            existing.setTechnicianCode(technicianDto.getTechnicianCode());
+//        }
 
         return technicianMapper.toTechnicianDto(technicianRepository.save(existing));
     }

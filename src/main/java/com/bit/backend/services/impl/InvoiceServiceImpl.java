@@ -103,9 +103,9 @@ public class InvoiceServiceImpl implements InvoiceServiceI {
         existing.setServiceContract(serviceContract);
         existing.setStatus(status);
 
-        if (invoiceDto.getInvoiceCode() != null && !invoiceDto.getInvoiceCode().isBlank()) {
-            existing.setInvoiceCode(invoiceDto.getInvoiceCode());
-        }
+//        if (invoiceDto.getInvoiceCode() != null && !invoiceDto.getInvoiceCode().isBlank()) {
+//            existing.setInvoiceCode(invoiceDto.getInvoiceCode());
+//        }
         InvoiceEntity updated = invoiceRepository.save(existing);
         return invoiceMapper.toInvoiceDto(updated);
     }
