@@ -95,9 +95,9 @@ public class ServiceTypeImpl implements ServiceTypeI {
         existing.setPestType(pestType);
         existing.setStatus(status);
 
-        if (serviceTypeDto.getServiceCode() != null && !serviceTypeDto.getServiceCode().isBlank()) {
-            existing.setServiceCode(serviceTypeDto.getServiceCode());
-        }
+//        if (serviceTypeDto.getServiceCode() != null && !serviceTypeDto.getServiceCode().isBlank()) {
+//            existing.setServiceCode(serviceTypeDto.getServiceCode());
+//        }
 
         return serviceTypeMapper.toServiceTypeDto(serviceTypeRepository.save(existing));
     }

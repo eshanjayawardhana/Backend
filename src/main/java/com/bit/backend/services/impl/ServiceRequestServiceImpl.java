@@ -112,9 +112,9 @@ public class ServiceRequestServiceImpl implements ServiceRequestServiceI {
         existing.setPestType(pestType);
         existing.setServiceType(serviceType);
 
-        if (serviceRequestDto.getRequestCode() != null && !serviceRequestDto.getRequestCode().isBlank()) {
-            existing.setRequestCode(serviceRequestDto.getRequestCode());
-        }
+//        if (serviceRequestDto.getRequestCode() != null && !serviceRequestDto.getRequestCode().isBlank()) {
+//            existing.setRequestCode(serviceRequestDto.getRequestCode());
+//        }
 
         return serviceRequestMapper.toServiceRequestDto(serviceRequestRepository.save(existing));
     }

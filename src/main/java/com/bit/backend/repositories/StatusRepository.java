@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface StatusRepository extends JpaRepository<StatusEntity, Long> {
     Optional<StatusEntity> findByName(String name);
     List<StatusEntity> findByModuleType(String moduleType);
+    Optional<StatusEntity> findByModuleTypeAndName(String moduleType, String name);
 
 }
