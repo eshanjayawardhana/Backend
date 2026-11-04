@@ -1,5 +1,6 @@
 package com.bit.backend.dtos;
 
+import java.math.BigDecimal;
 
 public class CustomerDto {
 
@@ -11,12 +12,14 @@ public class CustomerDto {
     private String phone;
     private String nic;
     private String billingAddress;
+    private Boolean isTaxable;
+    private BigDecimal taxRate;
     private StatusDto status;
 
     public CustomerDto() {
     }
 
-    public CustomerDto(Integer id, String customerCode, String customerName, String customerType, String email, String phone, String nic, String billingAddress, StatusDto status) {
+    public CustomerDto(Integer id, String customerCode, String customerName, String customerType, String email, String phone, String nic, String billingAddress, StatusDto status, Boolean isTaxable, BigDecimal taxRate) {
         this.id = id;
         this.customerCode = customerCode;
         this.customerName = customerName;
@@ -26,6 +29,8 @@ public class CustomerDto {
         this.nic = nic;
         this.billingAddress = billingAddress;
         this.status = status;
+        this.isTaxable = isTaxable;
+        this.taxRate = taxRate;
     }
 
     public Integer getId() {
@@ -90,6 +95,22 @@ public class CustomerDto {
 
     public void setBillingAddress(String billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public Boolean getIsTaxable() {
+        return isTaxable;
+    }
+
+    public void setIsTaxable(Boolean isTaxable) {
+        this.isTaxable = isTaxable;
+    }
+
+    public BigDecimal getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(BigDecimal taxRate) {
+        this.taxRate = taxRate;
     }
 
     public StatusDto getStatus() {
