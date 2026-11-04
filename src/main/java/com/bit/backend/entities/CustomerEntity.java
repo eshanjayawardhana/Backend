@@ -1,11 +1,12 @@
 package com.bit.backend.entities;
 
+import java.math.BigDecimal;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "customer")
-public class CustomerEntity extends AuditableEntity{
+public class CustomerEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,12 @@ public class CustomerEntity extends AuditableEntity{
     @Column(name = "billing_address")
     private String billingAddress;
 
+    @Column(name = "is_taxable")
+    private Boolean isTaxable = false;
+
+    @Column(name = "tax_rate", precision = 5, scale = 2)
+    private BigDecimal taxRate;
+
     @ManyToOne
     @JoinColumn(name = "status_id")
     private StatusEntity status;
@@ -39,7 +46,8 @@ public class CustomerEntity extends AuditableEntity{
     public CustomerEntity() {
     }
 
-    public CustomerEntity(Integer id, String customerCode, String customerName, String customerType, String email, String phone, String nic, String billingAddress, StatusEntity status) {
+    public CustomerEntity(Integer id, String customerCode, String customerName, String customerType, String email,
+            String phone, String nic, String billingAddress, StatusEntity status, Boolean isTaxable, BigDecimal taxRate) {
         this.id = id;
         this.customerCode = customerCode;
         this.customerName = customerName;
@@ -49,6 +57,8 @@ public class CustomerEntity extends AuditableEntity{
         this.nic = nic;
         this.billingAddress = billingAddress;
         this.status = status;
+        this.isTaxable = isTaxable;
+        this.taxRate = taxRate;
     }
 
     public Integer getId() {
@@ -113,6 +123,22 @@ public class CustomerEntity extends AuditableEntity{
 
     public void setBillingAddress(String billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public Boolean getIsTaxable() {
+        return isTaxable;
+    }
+
+    public void setIsTaxable(Boolean isTaxable) {
+        this.isTaxable = isTaxable;
+    }
+
+    public BigDecimal getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(BigDecimal taxRate) {
+        this.taxRate = taxRate;
     }
 
     public StatusEntity getStatus() {
