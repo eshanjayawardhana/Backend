@@ -71,7 +71,7 @@ public class ServiceRequestServiceImpl implements ServiceRequestServiceI {
                 50);
 
         // Assign generated service request code
-        saved.setRequestCode(serviceRequestCode);
+        saved.setRequestCode(serviceRequestCode + "/" + pestType.getPestName().toUpperCase().replaceAll("\\s+", "-"));
 
         // Save again with generated service request code
         saved = serviceRequestRepository.save(saved);
